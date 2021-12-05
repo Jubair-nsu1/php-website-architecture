@@ -10,53 +10,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<style>
-.bluebox {
-  margin-top: 50px;
-  max-width: 800px;
-  box-shadow: 0 0 30px blue;
-  padding:15px 15px 15px 15px;
-}
+  <style>
+  .greenbox {
+    margin-top: 50px;
+    max-width: 800px;
+    box-shadow: 0 0 30px green;
+    padding:0px 0px 0px 0px;
+  }
+  </style>
 
 
-.cardBlue {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background: blue;
-  color: white;
-  transition: 0.3s;
-  width: 50%;
-}
-
-.cardGreen {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background: green;
-  color: white;
-  transition: 0.3s;
-  width: 50%;
-}
-
-.cardBlue:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,.3,.3,.6);
-}
-
-.cardGreen:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,.3,.3,.6);
-}
-
-.contain {
-  padding: 2px 6px;
-}
-
-
-</style>
-
-
-    <title>Dashboard</title>
+    <title>Customers</title>
   </head>
 
   <?php
-//  include_once '../../controller/dbConnection.php';
-  $conn =mysqli_connect("localhost", "root","","bylc");
+  include_once '../../controller/dbConnection.php';
   session_start();
   if (!(isset($_SESSION['email']))) {
       session_destroy();
@@ -98,48 +66,51 @@
     </nav>
     <!-- End of Navbar -->
 
-    <?php
-      $totalCustomers=0;
-      $totalEmployee=0;
 
-      $sql = "Select * From employee";
-      $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-      while( $record = mysqli_fetch_assoc($resultset) ) {
-            $totalEmployee++;
-      }
-
-      $sql2 = "Select * From customer";
-      $resultset = mysqli_query($conn, $sql2) or die("database error:". mysqli_error($conn));
-      while( $record = mysqli_fetch_assoc($resultset) ) {
-            $totalCustomers++;
-      }
-
-      //Getting Timezone of Dhaka
-      $dt = new DateTime('now', new DateTimezone('Asia/Dhaka'));
-    ?>
-
+    <!-- View all Customers -->
     <center>
-    <div class="bluebox">
-        <h1 style="color:blue">Welcome<?php echo " $name"; ?></h2><br>
-        <h4><?php echo $dt->format('F j, Y, g:i a');  ?></h4><br><br>
+      <br><br>
+      <h2>Employee Logs</h2>
+      <div class="greenbox">
+        <table class="table table-striped table-dark">
+          <thead>
+            <tr class="bg-success">
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Logs</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
 
-        <div class="cardBlue">
-          <div class="contain">
-            <h4><b>Total Employee</b></h4>
-            <p><?php echo $totalEmployee ?></p>
-          </div>
-        </div>
-        	<br>
 
-        <div class="cardGreen">
-          <div class="contain">
-            <h4><b>Total Customers</b></h4>
-            <p><?php echo $totalCustomers ?></p>
-          </div>
-        </div>
-    </div>
+            <?php
+              $c=1;
+              $sql = "Select employee_name,log,date,time From log_history";
+              $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+              while( $record = mysqli_fetch_assoc($resultset) ) {
+                $name = $record['employee_name'];
+                $log = $record['log'];
+                $date = $record['date'];
+                $time = $record['time'];
+            ?>
+            <tr>
+              <td style="color:yellow"><?php echo $c ?></td>
+              <td><?php echo $name ?></td>
+              <td><?php echo $log ?></td>
+              <td><?php echo $date ?></td>
+              <td><?php echo $time ?></td>
+            </tr>
+
+            <?php
+              $c++;
+              }
+            ?>
+
+        </table>
+      </div>
     </center>
-    <br><br>
+
 
   </body>
 

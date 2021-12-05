@@ -1,0 +1,46 @@
+<style>
+.bluebox {
+  margin-top: 50px;
+  max-width: 800px;
+  box-shadow: 0 0 30px blue;
+  padding:15px 15px 15px 15px;
+}
+
+.greenbox {
+  margin-top: 50px;
+  max-width: 800px;
+  box-shadow: 0 0 30px green;
+  padding:0px 0px 0px 0px;
+}
+
+
+.cardBlue {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background: blue;
+  color: white;
+  transition: 0.3s;
+  width: 50%;
+}
+
+.cardGreen {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background: green;
+  color: white;
+  transition: 0.3s;
+  width: 50%;
+}
+
+.cardBlue:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,.3,.3,.6);
+}
+
+.cardGreen:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,.3,.3,.6);
+}
+
+.contain {
+  padding: 2px 6px;
+}
+
+
+</style>

@@ -32,6 +32,9 @@
   } else {
       $name = $_SESSION['name'];
   }
+
+  //Getting Timezone of Dhaka
+  $dt = new DateTime('now', new DateTimezone('Asia/Dhaka'));
   ?>
 
   <body>
@@ -64,8 +67,7 @@
     <center>
     <div class="bluebox">
         <h1 style="color:blue">Welcome <?php echo " $name"; ?></h2><br>
-        <h4><?php echo "Today's Date is " . date("d/m/Y") . "<br>"; ?></h4>
-        <h4><?php echo "The time is " . date("h:i:sa"); ?> </h4>
+        <h4><?php echo $dt->format('F j, Y, g:i a');  ?></h4><br><br>
     </div>
     </center>
     <br><br>

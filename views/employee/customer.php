@@ -55,7 +55,7 @@
             <a class="nav-link" href="customer.php">Customers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../controller/signout.php">Sign Out</a>
+            <a class="nav-link" href="../../controller/employee_logout.php">Sign Out</a>
           </li>
         </ul>
 

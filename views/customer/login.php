@@ -18,12 +18,16 @@
     <title>Customer Login</title>
   </head>
 
-
-
   <body>
+    <style>
+    body  {
+      background-image: url("https://static.vecteezy.com/system/resources/previews/002/490/560/non_2x/abstract-dark-blue-luxury-background-with-golden-line-diagonal-free-vector.jpg");
+    }
+    </style>
     <br><br><br>
+
     <div class="login-wrap">
-	<div class="login-html">
+	  <div class="login-html">
 
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
@@ -49,7 +53,8 @@
   				</div>
   				<div class="hr"></div>
   				<div class="foot-lnk">
-  					<a href="#forgot">Forgot Password?</a>
+  					<a href="#forgot">Forgot Password?</a><br>
+            <a href="../../index.php">Main Page</a>
   				</div>
         </form>
 			</div>

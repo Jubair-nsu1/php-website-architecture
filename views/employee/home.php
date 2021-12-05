@@ -49,6 +49,8 @@
       $name = $_SESSION['name'];
       $email = $_SESSION['email'];
   }
+  //Getting Timezone of Dhaka
+  $dt = new DateTime('now', new DateTimezone('Asia/Dhaka'));
   ?>
 
   <body>
@@ -72,7 +74,7 @@
             <a class="nav-link" href="customer.php">Customers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../controller/signout.php">Sign Out</a>
+            <a class="nav-link" href="../../controller/employee_logout.php">Sign Out</a>
           </li>
         </ul>
 
@@ -83,8 +85,7 @@
     <center>
     <div class="bluebox">
         <h1 style="color:blue">Welcome <?php echo " $name"; ?></h2><br>
-        <h4><?php echo "Today's Date is " . date("d/m/Y") . "<br>"; ?></h4>
-        <h4><?php echo "The time is " . date("h:i:sa"); ?> </h4><br><br>
+        <h4><?php echo $dt->format('F j, Y, g:i a');  ?></h4><br><br>
 
         <?php
           $totalCustomers=0;

@@ -58,10 +58,13 @@ if (isset($_POST['employee_login'])) {
         session_destroy();
     }
 
+    $dt = new DateTime('now', new DateTimezone('Asia/Dhaka'));
+    $date = $dt->format('F j, Y');
+    $time = $dt->format('g:i a');
+
     $email = $_POST['email'];
     $password = $_POST['password'];
     $query = "select name,email,phone From employee Where email='$email' And password='$password'";
-
     $result =mysqli_query($conn,$query);
     $count = mysqli_num_rows($result);
 
@@ -69,11 +72,13 @@ if (isset($_POST['employee_login'])) {
       while ($row = mysqli_fetch_array($result)) {
             $name = $row['name'];
             $email = $row['email'];
-            $phn = $row['phone'];
       }
       $_SESSION["name"]  = $name;
       $_SESSION["email"] = $email;
-      $_SESSION["phone"] = $phn;
+      //Storing Employee Login record
+      $emp_name = $_SESSION["name"];
+      $query2 = "Insert Into log_history(employee_name, log, date,time) Values('$emp_name','Signed In','$date','$time')";
+      mysqli_query($conn,$query2);
       header("location:../views/employee/home.php");
     }
     else{
