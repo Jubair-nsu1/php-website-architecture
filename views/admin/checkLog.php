@@ -37,40 +37,21 @@
   <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="home.php" style="color:lightblue">Admin</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="home.php">Home </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="employee.php">Employee</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customer.php">Customers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="checkLog.php">Logs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../controller/signout.php">Sign Out</a>
-          </li>
-        </ul>
-
-      </div>
-    </nav>
-    <!-- End of Navbar -->
+    <?php
+    include("components/navbar.html");
+    ?>
 
 
     <!-- View all Customers -->
     <center>
       <br><br>
       <h2>Employee Logs</h2>
+      <br><br>
+      <!-- Download Log Report -->
+      <form method="post" action="../../controller/download.php">
+        <input type="submit" name="print_report" class="btn btn-primary" value="Print Log Report" />
+      </form>
+
       <div class="greenbox">
         <table class="table table-striped table-dark">
           <thead>

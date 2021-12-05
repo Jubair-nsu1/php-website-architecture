@@ -19,8 +19,7 @@
 }
 </style>
 
-
-    <title>Dashboard</title>
+  <title>Dashboard</title>
   </head>
 
   <?php
@@ -31,6 +30,7 @@
       header("location:login.php");
   } else {
       $name = $_SESSION['name'];
+      $email = $_SESSION['email'];
   }
 
   //Getting Timezone of Dhaka
@@ -40,39 +40,23 @@
   <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="home.php" style="color:yellow">Customer</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="home.php">Home </a>
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.php">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../controller/signout.php">Sign Out</a>
-          </li>
-        </ul>
-
-      </div>
-    </nav>
-    <!-- End of Navbar -->
+    <?php
+      include("components/navbar.html");
+    ?>
 
     <center>
     <div class="bluebox">
         <h1 style="color:blue">Welcome <?php echo " $name"; ?></h2><br>
         <h4><?php echo $dt->format('F j, Y, g:i a');  ?></h4><br><br>
     </div>
-    </center>
     <br><br>
 
-    <center><button type="button" class="btn btn-danger">Delete Your Account</button></center>
+    <form role="form" method="post" action="../../controller/delete/deleteAccount.php?email=<?php echo $email ?>">
+        <button type="submit" onclick="return confirm('Are you sure you want to delete your account?');" class="btn btn-danger" name="delete_account">Delete Your Account</button>
+    </form>
+
+    </center>
+
 
   </body>
 

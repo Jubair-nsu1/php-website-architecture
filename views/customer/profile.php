@@ -19,7 +19,6 @@
 }
 </style>
 
-
     <title>Profile</title>
   </head>
 
@@ -37,33 +36,14 @@
   <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="home.php" style="color:yellow">Customer</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="home.php">Home </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.php">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../controller/signout.php">Sign Out</a>
-          </li>
-        </ul>
-
-      </div>
-    </nav>
-    <!-- End of Navbar -->
+    <?php
+    include("components/navbar.html");
+    ?>
 
     <!-- View Customer Profile Info -->
     <?php
       $sql = "Select name,email,phone From customer where email='$email'";
-      $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($con));
+      $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
       while( $record = mysqli_fetch_assoc($resultset) ) {
         $name = $record['name'];
         $email = $record['email'];
