@@ -1,15 +1,15 @@
 <?php
-include_once 'dbConnection.php';
+require_once 'dbConnection.php';
 
 //Customer Registration
 if (isset($_POST['customer_register'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $phone = $_POST['phone'];
     $password = $_POST['password'];
+    $phone = $_POST['phone'];
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "Insert Into members(full_name, email, phone, password) Values('$name','$email','$phone','$password')";
+    $query = "Insert Into customer(name, email, password,phone) Values('$name','$email','$password','$phone')";
     $result =mysqli_query($conn,$query);
 
     if($result){
@@ -36,7 +36,7 @@ if (isset($_POST['customer_login'])) {
 
     if($count==1){
       while ($row = mysqli_fetch_array($result)) {
-            $name = $row['full_name'];
+            $name = $row['name'];
             $email = $row['email'];
       }
       $_SESSION["name"]  = $name;
@@ -65,7 +65,7 @@ if (isset($_POST['employee_login'])) {
 
     if($count==1){
       while ($row = mysqli_fetch_array($result)) {
-            $name = $row['full_name'];
+            $name = $row['name'];
             $email = $row['email'];
       }
       $_SESSION["name"]  = $name;
@@ -77,6 +77,7 @@ if (isset($_POST['employee_login'])) {
       echo "<script>window.open('../index.php','_self')</script>";
     }
 }
+
 
 //Admin Login
 if (isset($_POST['admin_login'])) {
@@ -94,7 +95,7 @@ if (isset($_POST['admin_login'])) {
 
     if($count==1){
       while ($row = mysqli_fetch_array($result)) {
-            $name = $row['full_name'];
+            $name = $row['name'];
             $email = $row['email'];
       }
       $_SESSION["name"]  = $name;

@@ -11,58 +11,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <style>
-.bluebox {
+.greenbox {
   margin-top: 50px;
-  max-width: 800px;
-  box-shadow: 0 0 30px blue;
+  max-width: 500px;
+  box-shadow: 0 0 30px green;
   padding:15px 15px 15px 15px;
 }
-
-
-.cardBlue {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background: blue;
-  color: white;
-  transition: 0.3s;
-  width: 50%;
-}
-
-.cardGreen {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background: green;
-  color: white;
-  transition: 0.3s;
-  width: 50%;
-}
-
-.cardBlue:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,.3,.3,.6);
-}
-
-.cardGreen:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,.3,.3,.6);
-}
-
-.contain {
-  padding: 2px 6px;
-}
-
-
 </style>
 
 
-    <title>Dashboard</title>
+    <title>Profile</title>
   </head>
 
   <?php
-//  include_once '../../controller/dbConnection.php';
-  $conn =mysqli_connect("localhost", "root","","bylc");
+  include_once '../../controller/dbConnection.php';
   session_start();
   if (!(isset($_SESSION['email']))) {
       session_destroy();
       header("location:login.php");
   } else {
       $name = $_SESSION['name'];
+      $email = $_SESSION['email'];
+      $phone = $_SESSION['phone'];
   }
   ?>
 
@@ -70,7 +40,7 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="home.php" style="color:lightblue">Admin</a>
+      <a class="navbar-brand" href="home.php" style="color:yellow">Customer</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,10 +51,7 @@
             <a class="nav-link" href="home.php">Home </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="employee.php">Employee</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="customer.php">Customers</a>
+            <a class="nav-link" href="profile.php">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../controller/signout.php">Sign Out</a>
@@ -94,50 +61,17 @@
       </div>
     </nav>
     <!-- End of Navbar -->
-
-    <?php
-      $totalCustomers=0;
-      $totalEmployee=0;
-
-      $sql = "Select * From employee";
-      $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-      while( $record = mysqli_fetch_assoc($resultset) ) {
-            $totalEmployee++;
-      }
-
-      $sql2 = "Select * From customer";
-      $resultset = mysqli_query($conn, $sql2) or die("database error:". mysqli_error($conn));
-      while( $record = mysqli_fetch_assoc($resultset) ) {
-            $totalCustomers++;
-      }
-
-    ?>
-
     <center>
-    <div class="bluebox">
-        <h1 style="color:blue">Welcome<?php echo " $name"; ?></h2><br>
-        <h4><?php echo "Today's Date is " . date("d/m/Y") . "<br>"; ?></h4>
-        <h4><?php echo "The time is " . date("h:i:sa"); ?> </h4><br><br>
-
-        <div class="cardBlue">
-          <div class="contain">
-            <h4><b>Total Employee</b></h4>
-            <p><?php echo $totalEmployee ?></p>
-          </div>
-        </div>
-        	<br>
-
-        <div class="cardGreen">
-          <div class="contain">
-            <h4><b>Total Customers</b></h4>
-            <p><?php echo $totalCustomers ?></p>
-          </div>
-        </div>
-    </div>
+      <div class="greenbox">
+          <h2 style="color:green">My Profile</h2><br>
+          <a>Name</a><br>
+          <a style="color:red"><?php echo "$name"; ?></a><br><br>
+          <a>Email</a><br>
+          <a style="color:red; font:14px"><?php echo "$email"; ?></a><br><br>
+          <a>Phone</a><br>
+          <a style="color:red"><?php echo "$phone"; ?></a><br><br>
+      </div>
     </center>
-    <br><br>
-
-
 
   </body>
 
