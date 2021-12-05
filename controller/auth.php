@@ -38,9 +38,11 @@ if (isset($_POST['customer_login'])) {
       while ($row = mysqli_fetch_array($result)) {
             $name = $row['name'];
             $email = $row['email'];
+            $phone = $row['phone'];
       }
       $_SESSION["name"]  = $name;
       $_SESSION["email"] = $email;
+      $_SESSION["phone"] = $phone;
       header("location:../views/customer/home.php");
     }
     else{
@@ -58,7 +60,7 @@ if (isset($_POST['employee_login'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $query = "select * From employee Where email='$email' And password='$password'";
+    $query = "select name,email,phone From employee Where email='$email' And password='$password'";
 
     $result =mysqli_query($conn,$query);
     $count = mysqli_num_rows($result);
@@ -67,9 +69,11 @@ if (isset($_POST['employee_login'])) {
       while ($row = mysqli_fetch_array($result)) {
             $name = $row['name'];
             $email = $row['email'];
+            $phn = $row['phone'];
       }
       $_SESSION["name"]  = $name;
       $_SESSION["email"] = $email;
+      $_SESSION["phone"] = $phn;
       header("location:../views/employee/home.php");
     }
     else{

@@ -13,8 +13,7 @@ if (isset($_POST['add_employee'])) {
     $result =mysqli_query($conn,$query);
 
     if($result){
-      echo "<script>alert('Employee Added Successfully')</script>";
-      echo "<script>window.open('../../views/admin/employee.php','_self')</script>";
+      header("Location: ../../views/admin/employee.php"); 
     }
 }
 

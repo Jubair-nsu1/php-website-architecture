@@ -47,6 +47,7 @@
       header("location:login.php");
   } else {
       $name = $_SESSION['name'];
+      $email = $_SESSION['email'];
   }
   ?>
 
@@ -105,8 +106,6 @@
     </div>
     </center>
     <br><br>
-
-    <center><button type="button" class="btn btn-danger">Delete Your Account</button></center>
 
   </body>
 

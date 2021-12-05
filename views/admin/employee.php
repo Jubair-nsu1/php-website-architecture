@@ -155,7 +155,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-
+                    <!-- Update form -->
                     <form role="form" method="post" action="../../controller/update/updateEmployee.php?email=<?php echo $email ?>">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Employee Name</label>
@@ -163,7 +163,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Employee Email Address</label>
-                        <input type="email" name="email" maxlength="20"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value=<?php echo "$email" ?> class="form-control">
+                        <input type="email" name="email" maxlength="20"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value=<?php echo "$email" ?> class="form-control" readonly>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Employee Password</label>
@@ -177,14 +177,15 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success" name="update_employee">Update</button>                
+                    <button type="submit" class="btn btn-success" name="update_employee">Update</button>
                   </div>
                   </form>
                 </div>
               </div>
             </div>
 
-            <td><a  style="color:red" href="../../controller/delete/deleteEmployee.php?email=<?php echo $email ?>">Delete</a></td>
+            <!-- button to delete customer -->
+            <td><button class="btn btn-danger"><a style="color:white" href="../../controller/delete/deleteEmployee.php?email=<?php echo $email ?>">Delete</a></button></td>
           </tr>
 
           <?php

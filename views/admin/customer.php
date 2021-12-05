@@ -109,15 +109,15 @@
                       </button>
                     </div>
                     <div class="modal-body">
-
-                      <form role="form" method="post" action="../../controller/create/updateCustomer.php?email=<?php echo $email ?>">
+                      <!-- Update form -->
+                      <form role="form" method="post" action="../../controller/update/updateCustomer.php?email=<?php echo $email ?>">
                         <div class="form-group">
                           <label for="exampleInputEmail1">Customer Name</label>
                           <input type="text" name="name" maxlength="20"  value=<?php echo "$name" ?> class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Customer Email Address</label>
-                          <input type="email" name="email" maxlength="20"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value=<?php echo "$email" ?> class="form-control">
+                          <input type="email" name="email" maxlength="20"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value=<?php echo "$email" ?> class="form-control" readonly>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Customer Password</label>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Customer Phone Number</label>
-                          <input type="Phone" name="phone" maxlength="30" value=<?php echo "$phone" ?> class="form-control">
+                          <input type="Phone" name="phone" maxlength="30" value=<?php echo "$phone" ?> class="form-control" >
                         </div>
 
                     </div>

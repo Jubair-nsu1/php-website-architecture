@@ -30,9 +30,7 @@
       session_destroy();
       header("location:login.php");
   } else {
-      $name = $_SESSION['name'];
       $email = $_SESSION['email'];
-      $phone = $_SESSION['phone'];
   }
   ?>
 
@@ -64,17 +62,31 @@
       </div>
     </nav>
     <!-- End of Navbar -->
+
+    <!-- View Èmployee Profile Info -->
+    <?php
+      $sql = "Select name,email,phone From employee where email='$email'";
+      $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($con));
+      while( $record = mysqli_fetch_assoc($resultset) ) {
+        $name = $record['name'];
+        $email = $record['email'];
+        $phone = $record['phone'];
+    ?>
     <center>
       <div class="greenbox">
           <h2 style="color:green">My Profile</h2><br>
           <a>Name</a><br>
-          <a style="color:red"><?php echo "$name"; ?></a><br><br>
+          <a style="color:red"><?php echo "$name" ?></a><br><br>
           <a>Email</a><br>
-          <a style="color:red; font:14px"><?php echo "$email"; ?></a><br><br>
+          <a style="color:red"><?php echo "$email" ?></a><br><br>
           <a>Phone</a><br>
-          <a style="color:red"><?php echo "$phone"; ?></a><br><br>
+          <a style="color:red"><?php echo "$phone" ?></a><br><br>
       </div>
     </center>
+
+    <?php
+    }
+    ?>
 
   </body>
 
