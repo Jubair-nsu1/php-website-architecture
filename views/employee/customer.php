@@ -72,7 +72,7 @@
                     </div>
                     <div class="modal-body">
                       <!-- Update form -->
-                      <form role="form" method="post" action="../../controller/update/updateCustomer.php?email=<?php echo $email ?>">
+                      <form role="form" method="post" action="../../controller/update/updateCustomerbyEmp.php?email=<?php echo $email ?>">
                         <div class="form-group">
                           <label for="exampleInputEmail1">Customer Name</label>
                           <input type="text" name="name" maxlength="20"  value=<?php echo "$name" ?> class="form-control" required>
