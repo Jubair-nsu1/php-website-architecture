@@ -34,6 +34,7 @@
 
     <div class="login-form">
 
+      <!-- Login -->
       <div class="sign-in-htm">
         <form name="form" action="../../controller/auth.php" method="post">
           <div class="group">
@@ -59,8 +60,9 @@
         </form>
 			</div>
 
+      <!-- Register -->
 			<div class="sign-up-htm">
-        <form name="form" action="../../controller/auth.php" method="post">
+        <form name="form" action="../../controller/create/createCustomer.php" method="post">
   				<div class="group">
   					<label for="name" class="label">Name</label>
   					<input class="input" type="text" name="name" placeholder="Aron Smith" required/>

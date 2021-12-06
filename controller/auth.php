@@ -1,25 +1,6 @@
 <?php
 require_once 'dbConnection.php';
 
-//Customer Registration
-if (isset($_POST['customer_register'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $phone = $_POST['phone'];
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-
-    $query = "Insert Into customer(name, email, password,phone) Values('$name','$email','$password','$phone')";
-    $result =mysqli_query($conn,$query);
-
-    if($result){
-      echo "<script>alert('Registered Successfully')</script>";
-      echo "<script>window.open('../views/customer/login.php','_self')</script>";
-    }
-}
-
-
-
 //Customer Login
 if (isset($_POST['customer_login'])) {
     session_start();
@@ -27,9 +8,13 @@ if (isset($_POST['customer_login'])) {
         session_destroy();
     }
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["email"])));
+    $password = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["password"])));
     $query = "select * From customer Where email='$email' And password='$password'";
+
+    $stmt = $mysqli->prepare("select * From customer Where email='$email' And password='$password'");
+    $stmt->mysqli_bind_param("ss",$email,$password);
+    $stmt->execute();
 
     $result =mysqli_query($conn,$query);
     $count = mysqli_num_rows($result);
@@ -62,8 +47,8 @@ if (isset($_POST['employee_login'])) {
     $date = $dt->format('F j, Y');
     $time = $dt->format('g:i a');
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["email"])));
+    $password = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["password"])));
     $query = "select name,email,phone From employee Where email='$email' And password='$password'";
     $result =mysqli_query($conn,$query);
     $count = mysqli_num_rows($result);
@@ -95,8 +80,8 @@ if (isset($_POST['admin_login'])) {
         session_destroy();
     }
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["email"])));
+    $password = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["password"])));
     $query = "select * From admin Where email='$email' And password='$password'";
 
     $result =mysqli_query($conn,$query);
