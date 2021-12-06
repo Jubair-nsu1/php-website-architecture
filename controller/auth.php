@@ -12,10 +12,6 @@ if (isset($_POST['customer_login'])) {
     $password = strip_tags(trim(mysqli_real_escape_string($conn,$_POST["password"])));
     $query = "select * From customer Where email='$email' And password='$password'";
 
-    $stmt = $mysqli->prepare("select * From customer Where email='$email' And password='$password'");
-    $stmt->mysqli_bind_param("ss",$email,$password);
-    $stmt->execute();
-
     $result =mysqli_query($conn,$query);
     $count = mysqli_num_rows($result);
 
